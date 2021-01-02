@@ -17,6 +17,10 @@ with open(csvpath) as csvfile:
     # Assign values to variables
     total_months = 0
     total_revenue = 0
+    revenue_change = 0
+    prev_revenue = 0 
+    change_list = []
+
     
     # Loop through the data
     for row in csvreader:
@@ -27,7 +31,16 @@ with open(csvpath) as csvfile:
         # Add total revenue
         total_revenue = total_revenue + int(row[1])
 
+        # Gather profit change
+        revenue_change = int(row[1]) - prev_revenue
+        prev_revenue = int(row[1])
+        change_list.append(revenue_change)
+    
+    
 
+    # *****NEED TO FIGURE OUT HOW TO REMOVE THE FIRST ROW CALC
+    # Calculate the average revenue
+    average_change = sum(change_list) / total_months
 
     #--------------------------------
 
@@ -35,3 +48,4 @@ print("Financial Analysis")
 print("-----------------------")
 print(f"Total Months: {total_months}")
 print(f"Total Revenue: ${total_revenue}")
+print(f"Average Change: ${average_change}")
