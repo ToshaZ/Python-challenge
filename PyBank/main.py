@@ -20,6 +20,8 @@ with open(csvpath) as csvfile:
     revenue_change = 0
     prev_revenue = 0 
     change_list = []
+    great_inc_amount = 0
+    great_inc_date = 0
 
     
     # Loop through the data
@@ -35,6 +37,11 @@ with open(csvpath) as csvfile:
         revenue_change = int(row[1]) - prev_revenue
         prev_revenue = int(row[1])
         change_list.append(revenue_change)
+
+        #Calulate Greatest Increase
+        if revenue_change > great_inc_amount:
+            great_inc_amount = revenue_change
+            great_inc_date = str(row[0])
     
     
 
@@ -49,3 +56,4 @@ print("-----------------------")
 print(f"Total Months: {total_months}")
 print(f"Total Revenue: ${total_revenue}")
 print(f"Average Change: ${average_change}")
+print(f"Greatest Increase in Profits: {great_inc_date} ${great_inc_amount}")
