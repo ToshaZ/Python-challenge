@@ -3,7 +3,7 @@ import os
 import csv
 
 # Path to collect data from the Resources folder
-csvpath = os.path.join('..', '..','..', 'nu_bootcamp', 'nu-chi-data-pt-11-2020-u-c', 'Homework', '03-Python', 'Instructions', 'PyBank', 'Resources', 'budget_data.csv')
+csvpath = os.path.join('Resources', 'budget_data.csv')
 
 # Open and read the CSV file
 with open(csvpath) as csvfile:
@@ -56,12 +56,26 @@ with open(csvpath) as csvfile:
     # Calculate the average revenue
     average_change = sum(change_list) / total_months
 
-    #--------------------------------
+    #-------------------------------
+#print to a txt file
+outputpath = os.path.join("Analysis", "budget_analysis.txt")
+budget_analysis = open(outputpath, "w")
 
-print("Financial Analysis")
-print("-----------------------")
-print(f"Total Months: {total_months}")
-print(f"Total Revenue: ${total_revenue}")
-print(f"Average Change: ${average_change}")
-print(f"Greatest Increase in Profits: {great_inc_date} ${great_inc_amount}")
-print(f"Greatest Decrease in Profits: {great_dec_date} ${great_dec_amount}")
+output = [
+    "Financial Analysis \n",
+    "----------------------- \n",
+    f"Total Months: {total_months} \n",
+    f"Total Revenue: ${total_revenue} \n",
+    f"Average Change: ${average_change} \n",
+    f"Greatest Increase in Profits: {great_inc_date} ${great_inc_amount} \n",
+    f"Greatest Decrease in Profits: {great_dec_date} ${great_dec_amount} \n"
+    ]
+
+budget_analysis.writelines(output)
+
+budget_analysis.close()
+
+#Print **** Need to figure out how to clean up print out on new rows in terminal and remove the \n
+print(output)
+
+    
