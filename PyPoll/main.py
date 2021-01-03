@@ -43,7 +43,7 @@ with open(csvpath) as csvfile:
         # Gather percent of votes per candidate
         percent = (votes/total_votes)*100
         percent_vote.append(percent)
-
+# **** NEED TO FIGURE OUT HOW TO SHORTEN DECIMALS
 #------------------------------
 
 print("Election Results")
