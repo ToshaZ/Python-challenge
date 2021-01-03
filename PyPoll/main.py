@@ -52,13 +52,32 @@ print(f"Total Votes: {total_votes}")
 print("-----------------------------------")
 #Format output
 for i in range(len(unique_candidate)):
-            print(f"{unique_candidate[i]}: {percent_vote[i]}% ({candidate_votes[i]})")
+    print(f"{unique_candidate[i]}: {percent_vote[i]}% ({candidate_votes[i]})")
 
-            # Determine the Winner
-            if (winner_votes < candidate_votes[i]):
-               winner_votes = candidate_votes[i]
-               winner_candidate = unique_candidate[i]
+    # Determine the Winner
+    if (winner_votes < candidate_votes[i]):
+        winner_votes = candidate_votes[i]
+        winner_candidate = unique_candidate[i]
 
 print("-----------------------------------")
 print(f"Winner: {winner_candidate}")
 print("-----------------------------------")
+
+#--------------------------------------------------
+
+#print to a txt file
+outputpath = os.path.join("Analysis", "poll_analysis.txt")
+
+with open(outputpath, "w") as text:
+
+    text.writelines("Election Results \n")
+    text.writelines("----------------------------------- \n")
+    text.writelines(f"Total Votes: {total_votes}\n")
+    text.writelines("----------------------------------- \n")
+
+    for i in range(len(unique_candidate)):
+        text.writelines(f"{unique_candidate[i]}: {percent_vote[i]}% ({candidate_votes[i]})\n")
+
+    text.writelines("----------------------------------- \n")
+    text.writelines(f"Winner: {winner_candidate} \n")
+    text.writelines("----------------------------------- \n")
