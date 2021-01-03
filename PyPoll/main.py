@@ -16,12 +16,21 @@ with open(csvpath) as csvfile:
 
     # Assign values to variables
     total_votes = 0
+    candidate_list = []
+    unique_candidate = []
 
     # Loop through the data
     for row in csvreader:
         
-        # Count total months
+        # Count total votes
         total_votes = total_votes + 1
+
+        # List of candidates 
+        candidate_list.append(row[2])
+    
+    # Set unique canidate
+    for x in set(candidate_list):
+        unique_candidate.append(x)
 
 
 #------------------------------
@@ -30,3 +39,4 @@ print("Election Results")
 print("------------------------")
 print(f"Total Votes: {total_votes}")
 print("------------------------")
+print(f"{unique_candidate}: ")
