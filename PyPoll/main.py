@@ -18,6 +18,8 @@ with open(csvpath) as csvfile:
     total_votes = 0
     candidate_list = []
     unique_candidate = []
+    candidate_votes = []
+    percent_vote = []
 
     # Loop through the data
     for row in csvreader:
@@ -32,6 +34,14 @@ with open(csvpath) as csvfile:
     for x in set(candidate_list):
         unique_candidate.append(x)
 
+        # Count votes per canidate
+        votes = candidate_list.count(x)
+        candidate_votes.append(votes)
+
+        # Gather percent of votes per candidate
+        percent = (votes/total_votes)*100
+        percent_vote.append(percent)
+
 
 #------------------------------
 
@@ -40,3 +50,5 @@ print("------------------------")
 print(f"Total Votes: {total_votes}")
 print("------------------------")
 print(f"{unique_candidate}: ")
+print(f"{percent_vote}:")
+print(f"{candidate_votes}:")
