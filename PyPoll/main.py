@@ -44,12 +44,6 @@ with open(csvpath) as csvfile:
         percent = (votes/total_votes)*100
         percent_vote.append(percent)
 
-        # Determine winner
-        #for y in (candidate_votes): 
-
-            #if (votes > winner_votes):
-               # winner_candidate = (y)
-
 #------------------------------
 
 print("Election Results")
@@ -59,5 +53,12 @@ print("-----------------------------------")
 #Format output
 for i in range(len(unique_candidate)):
             print(f"{unique_candidate[i]}: {percent_vote[i]}% ({candidate_votes[i]})")
+
+            # Determine the Winner
+            if (winner_votes < candidate_votes[i]):
+               winner_votes = candidate_votes[i]
+               winner_candidate = unique_candidate[i]
+
 print("-----------------------------------")
-#print(f"Winner: {winner_candidate}")
+print(f"Winner: {winner_candidate}")
+print("-----------------------------------")
