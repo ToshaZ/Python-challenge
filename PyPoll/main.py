@@ -20,6 +20,8 @@ with open(csvpath) as csvfile:
     unique_candidate = []
     candidate_votes = []
     percent_vote = []
+    winner_votes = 0
+    winner_candidate= ""
 
     # Loop through the data
     for row in csvreader:
@@ -42,13 +44,20 @@ with open(csvpath) as csvfile:
         percent = (votes/total_votes)*100
         percent_vote.append(percent)
 
+        # Determine winner
+        #for y in (candidate_votes): 
+
+            #if (votes > winner_votes):
+               # winner_candidate = (y)
 
 #------------------------------
 
 print("Election Results")
-print("------------------------")
+print("-----------------------------------")
 print(f"Total Votes: {total_votes}")
-print("------------------------")
-print(f"{unique_candidate}: ")
-print(f"{percent_vote}:")
-print(f"{candidate_votes}:")
+print("-----------------------------------")
+#Format output
+for i in range(len(unique_candidate)):
+            print(f"{unique_candidate[i]}: {percent_vote[i]}% ({candidate_votes[i]})")
+print("-----------------------------------")
+#print(f"Winner: {winner_candidate}")
