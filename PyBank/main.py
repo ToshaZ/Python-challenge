@@ -24,6 +24,7 @@ with open(csvpath) as csvfile:
     great_inc_date = 0
     great_dec_amount = 0
     great_dec_date = 0
+    #average_change = []
 
     
     # Loop through the data
@@ -40,6 +41,13 @@ with open(csvpath) as csvfile:
         prev_revenue = int(row[1])
         change_list.append(revenue_change)
 
+        #if initial_value == initial_value:
+            #initial_value = float(row[1])
+        
+        #else: 
+           # change = float(row[1]) - initial_value
+            #average_change.append(change)
+    
         #Calulate Greatest Increase
         if revenue_change > great_inc_amount:
             great_inc_amount = revenue_change
@@ -49,13 +57,12 @@ with open(csvpath) as csvfile:
         if revenue_change < great_dec_amount:
             great_dec_amount = revenue_change
             great_dec_date = str(row[0])
-    
-    
 
-    # *****NEED TO FIGURE OUT HOW TO REMOVE THE FIRST ROW CALC
+    change_list[0] = 0
+
     # Calculate the average revenue
-    average_change = sum(change_list) / total_months
-
+    average_change = (sum(change_list) / (len(change_list)-1))
+    
     #-------------------------------
 #print to a txt file
 outputpath = os.path.join("Analysis", "budget_analysis.txt")
@@ -75,7 +82,12 @@ budget_analysis.writelines(output)
 
 budget_analysis.close()
 
-#Print **** Need to figure out how to clean up print out on new rows in terminal and remove the \n
-print(output)
+#Print in terminal
+print("Financial Analysis")
+print("------------------------------")
+print(f"Total Months: {total_months}")
+print(f"Total Revenue: ${total_revenue}")
+print(f"Average Change: ${average_change}")
+print(f"Greatest Increase in Profits: {great_inc_date} $({great_inc_amount})")
+print(f"Greatest Decrease in Profits: {great_dec_date} $({great_dec_amount})")
 
-    
